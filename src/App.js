@@ -1,37 +1,26 @@
-import axios from 'axios';
-import React,{useState} from 'react'
-
+import React from 'react'
+import './App.css'
+import NavBar from './components/NavBar/NavBar'
+import Banner from './components/Banner'
+import RowPost from './components/RowPost'
+import {trending,action} from './urls'
 
 function App() {
+  
 
-const [data,setData]=useState([]);
+
   return (
-    <div className="App">
-      <h1> Fetch data from an api in react </h1>
-<button onClick={
-  ()=>{
-  axios.get('https://jsonplaceholder.typicode.com/posts').then((response)=>
-  {
-    setData(response.data);
-    console.log(response.data);
-  })
-}}>Click me</button>
+    <div className='App'>
+     <NavBar/>
+     <Banner/>
+     <RowPost url={trending} title='Trending'/>
+     <RowPost url={action} title='Action' isSmall/>
+     <RowPost url={action} title='Action' isSmall/>
+     {/* <RowPost url={tv} title='Tv' isSmall/> */}
 
-{
-data.map((obj,index)=>{
-  return(
-    <div>
-      <h1>{index+1}</h1>
-      <h1>{obj.title}</h1>
-      <h4>{obj.body}</h4>
     </div>
   )
-})
 }
 
-    </div>
-  );
-}
+export default App
 
-
-export default App;
